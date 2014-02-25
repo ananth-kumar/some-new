@@ -1,0 +1,6 @@
+name = Quiz Passed
+description = "Simple custom module for when someone passes a quiz"
+package = Rules
+dependencies[] = "rules"
+dependencies[] = "quiz"
+core = 7.x
