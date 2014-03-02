@@ -28,20 +28,25 @@ function quiz_passed_quiz_finished($quiz, $score, $rid) {
     $key = 'dummy_key';
     $language = language_default();
     global $user;
-    $uarray = user_load($user->uid);
-    $uname = $uarray->field_name['und'][0]['safe_value'];
-    $ubatt = $uarray->field_battalion['und'][0]['tid'];
-    $term = taxonomy_term_load($ubatt);
-    $mail = $term->field_email['und'][0]['safe_value'];
-    $params = array(
-      '@user'       => $uarray->field_name['und'][0]['safe_value'],
-      '@url'        => url('node/' . $node->nid, array('absolute' => TRUE)),
-      '@quiz'       => $quiz->title,
-      '@score'      => $score['percentage_score'],
-      '@battalion'  => $uarray->field_battalion['und'][0]['tid'],
-      '@link'       => 'http://acwa.org/node/' . $quiz->nid . '/results',
-    );
-    drupal_mail($module, $key, $mail, $language, $params);
+    
+    if ($user->uid > 0) {
+      $uarray = user_load($user->uid);
+      $uname = $uarray->field_name['und'][0]['safe_value'];
+      $ubatt = $uarray->field_battalion['und'][0]['tid'];
+      $term = taxonomy_term_load($ubatt);
+      $mail = $term->field_email['und'][0]['safe_value'];
+      $params = array(
+        '@user'       => $uarray->field_name['und'][0]['safe_value'],
+        '@url'        => url('node/' . $node->nid, array('absolute' => TRUE)),
+        '@quiz'       => $quiz->title,
+        '@score'      => $score['percentage_score'],
+        '@battalion'  => $uarray->field_battalion['und'][0]['tid'],
+        '@link'       => 'http://acwa.org/node/' . $quiz->nid . '/results',
+      );
+      drupal_mail($module, $key, $mail, $language, $params);
+    }
+    
+    drupal_set_message("<a href='/printquiz/" . $rid['result_id'] . "'>Print a copy</a>");
   } else {
     drupal_set_message("Sorry, you didn't pass.  Please try again.");
   }
