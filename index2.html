@@ -1,0 +1,15 @@
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script>
+jQuery(document).ready(function() {
+    var href = jQuery(location).attr('href');
+    var url = jQuery(this).attr('title');
+    jQuery('#current_title').html(href);
+    jQuery('#current_url').html(url);
+});
+</script>
+
+<p>Current page URL: <span id="current_url">www.example.com</span>.</p>
+<p>Current page title: <span id="current_title">mytitle</span>.</p>
