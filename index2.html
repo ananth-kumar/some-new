@@ -5,10 +5,10 @@
 <script>
 jQuery(document).ready(function() {
     var href = jQuery(location).attr('href');
-    var url = jQuery(this).attr('title');
+    var url = jQuery(this).attr('title').toString();
     jQuery('#current_title').html(href);
     jQuery('#current_url').html(url);
-    var param = url.split("&");
+    var param = url.split("?");
     console.log(param);
 });
 </script>
