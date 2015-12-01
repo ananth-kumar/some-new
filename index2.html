@@ -8,7 +8,8 @@ jQuery(document).ready(function() {
     var url = jQuery(this).attr('title');
     jQuery('#current_title').html(href);
     jQuery('#current_url').html(url);
-    console.log(url.split('?')[0].split('&'));
+    var param = url.split('?');
+    console.log(param);
 });
 </script>
 
