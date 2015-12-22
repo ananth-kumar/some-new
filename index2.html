@@ -7,12 +7,25 @@ jQuery(document).ready(function() {
     var href = jQuery(location).attr('href');
     var url = jQuery(this).attr('title').toString();
     jQuery('#current_title').html(href);
-    jQuery('#current_url').html(url);
+    jQuery('#current_url').html(getQueryVariable("files"));
+    
     var param = href.split("?");
     
-    console.log(param[1].split('&'));
+    console.log(getQueryVariable("files"));
+    
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  } 
+  alert('Query Variable ' + variable + ' not found');
+}
 });
 </script>
 
-<p>Current page URL: <span id="current_url">www.example.com</span>.</p>
+<p>Current files are: <span id="current_url">www.example.com</span>.</p>
 <p>Current page title: <span id="current_title">mytitle</span>.</p>
