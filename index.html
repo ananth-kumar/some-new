@@ -1,6 +1,7 @@
 <script>
+var fileNames = ["file1.json","file2.json","file3.json"]
   function onBtn(){
-    window.location.href = "index2.html";
+    window.location.href = "index2.html?files="+fileName.split(',');
   }
 </script>
-<button onclick='onBtn()' />
+<button onclick='onBtn()'  >Click me </button>
